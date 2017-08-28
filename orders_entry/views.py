@@ -10,6 +10,8 @@ def home(request):
 
 
 def new_order(request):
+    if request.method == 'POST':
+        print(request.POST)
     template = 'new_order.html'
     context = {}
     return render(request, template, context)

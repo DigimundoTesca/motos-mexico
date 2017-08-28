@@ -1,14 +1,59 @@
+@import "variables";
+
 body {
   font-size: 18px;
 }
 header.navbar {
-  height: 4.5rem;
+  padding: .5rem 1.5rem;
   img {
     margin: 0 1rem 0;
   }
 }
 
+.btn-option {
+  border-radius: 1.2rem;
+  cursor: pointer;
+  &:hover{
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+.btn-outline-dark:hover {
+  background-color: rgba(0,0,0,0.1);
+  color: $dark-color;
+}
+
+.container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 .logo-container {
   display: flex;
   justify-content: center;
+}
+
+
+#new-order-form {
+  background-color: $shade-color;
+  border: none;
+  padding: 2rem 2rem 1rem;
+  margin-top: 2rem;
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  fieldset:not(:first-of-type) {
+    display: none;
+  }
+  legend {
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+  .form-options {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 }

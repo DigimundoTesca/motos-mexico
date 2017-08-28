@@ -1,53 +1,106 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container mt-2">
-  <h1>Orden de Ingreso</h1>
-  <form class="" action="index.html" method="post">
+<div class="container">
+  <form id="new-order-form" class="form card" action="" method="post">
+    {% csrf_token %}
+    <h1 class="text-uppercase text-center">Orden de Ingreso</h1>
 
     <fieldset class="form-group">
-      <legend>Ejemplo</legend>
-      <label class="form-control-label" for="formGroupExampleInput">Example label</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+      <legend>Exterior</legend>
+      <div class="row form-options">
+        <div id="opt-1" class="col">
+          <div class="radio-group">
+            {# <div class="radio-group" hidden>#}
+            <input id="radio1" type="radio" name="radio1" value="yes" checked>
+            <input id="radio2" type="radio" name="radio1" value="no">
+            <input id="radio3" type="radio" name="radio1" value="cd">
+          </div>
+          <button type="button" type="button" class="btn btn-outline-dark btn-option btn-block">Indicadores del tablero</button>
+        </div>
+
+        <div id="opt-2" class="col">
+          <div class="radio-group">
+            {# <div class="radio-group" hidden>#}
+            <input id="radio4" type="radio" name="radio2" value="yes" checked>
+            <input id="radio5" type="radio" name="radio2" value="no">
+            <input id="radio6" type="radio" name="radio2" value="cd">
+          </div>
+          <button type="button" class="btn btn-outline-dark btn-option btn-block">Testigo de FI</button>
+        </div>
+
+        <div id="opt-3" class="col">
+          <div class="radio-group">
+            {# <div class="radio-group" hidden>#}
+            <input id="radio7" type="radio" name="radio3" value="yes" checked>
+            <input id="radio8" type="radio" name="radio3" value="no">
+            <input id="radio9" type="radio" name="radio3" value="cd">
+          </div>
+          <button type="button" class="btn btn-outline-dark btn-option btn-block">Kilometraje</button>
+        </div>
+
+        <div id="opt-4" class="col">
+          <div class="radio-group">
+            {# <div class="radio-group" hidden>#}
+            <input id="radio10" type="radio" name="radio4" value="yes" checked>
+            <input id="radio11" type="radio" name="radio4" value="no">
+            <input id="radio12" type="radio" name="radio4" value="cd">
+          </div>
+          <button type="button" class="btn btn-outline-dark btn-option btn-block">Indicadores de Gasolina</button>
+        </div>
+
+        <div id="opt-5" class="col">
+          <div class="radio-group">
+            {# <div class="radio-group" hidden>#}
+            <input id="radio13" type="radio" name="radio5" value="yes" checked>
+            <input id="radio14" type="radio" name="radio5" value="no">
+            <input id="radio15" type="radio" name="radio5" value="cd">
+          </div>
+          <button type="button" class="btn btn-outline-dark btn-option btn-block">Mando de direccionales</button>
+        </div>
+      </div>
+
+      <input type="button" name="next" class="btn btn-primary btn-block next action-button" value="Siguiente">
     </fieldset>
 
     <fieldset class="form-group">
       <legend>Ejemplo</legend>
       <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6">
           <label for="validationDefault01">First name</label>
-          <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark" required>
+          <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark">
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6">
           <label for="validationDefault02">Last name</label>
-          <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required>
+          <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto">
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6">
           <label for="validationDefault03">City</label>
-          <input type="text" class="form-control" id="validationDefault03" placeholder="City" required>
+          <input type="text" class="form-control" id="validationDefault03" placeholder="City">
           <div class="invalid-feedback">
             Please provide a valid city.
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-3">
           <label for="validationDefault04">State</label>
-          <input type="text" class="form-control" id="validationDefault04" placeholder="State" required>
+          <input type="text" class="form-control" id="validationDefault04" placeholder="State">
           <div class="invalid-feedback">
             Please provide a valid state.
           </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-3">
           <label for="validationDefault05">Zip</label>
-          <input type="text" class="form-control" id="validationDefault05" placeholder="Zip" required>
+          <input type="text" class="form-control" id="validationDefault05" name="zip" placeholder="Zip">
           <div class="invalid-feedback">
             Please provide a valid zip.
           </div>
         </div>
       </div>
+      <input type="button" name="previous" class="btn btn-primary btn-block previous action-button" value="Anterior">
+      <input type="button" name="next" class="btn btn-primary btn-block next action-button" value="Siguiente">
     </fieldset>
-    <br>
 
     <fieldset class="form-group">
       <legend>Ejemplo</legend>
@@ -63,7 +116,42 @@
           <span class="custom-control-description">Or toggle this other custom radio</span>
         </label>
       </div>
+      <input type="button" name="previous" class="btn btn-primary btn-block previous action-button" value="Anterior">
+      <input type="submit" name="submit" class="btn btn-success btn-block" value="Enviar">
     </fieldset>
+
   </form>
+  <span class="text-muted">
+    Formulario de ejemplo 1
+  </span>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.btn-option').click(function(event) {
+      let option = $(this).siblings('.radio-group').find('input[type=radio]:checked').val();
+      if ( option === 'yes' ) {
+        $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
+        $(this).siblings('.radio-group').find('input:radio[value=no]').attr('checked', 'checked');
+        $(this).removeClass('btn-outline-dark');
+        $(this).addClass('btn-outline-primary');
+      } else if ( option === 'no' ) {
+        $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
+        $(this).siblings('.radio-group').find('input:radio[value=cd]').attr('checked', 'checked');
+        $(this).removeClass('btn-outline-primary');
+        $(this).addClass('btn-outline-success');
+      } else {
+        $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
+        $(this).siblings('.radio-group').find('input:radio[value=yes]').attr('checked', 'checked');
+        $(this).removeClass('btn-outline-success');
+        $(this).addClass('btn-outline-dark');
+      }
+
+    });
+  });
+
+</script>
 {% endblock %}
