@@ -34,19 +34,24 @@ header.navbar {
   justify-content: center; }
 
 #new-order-form {
-  background-color: #f8f9fa;
   border: none;
-  padding: 2rem 2rem 1rem;
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  position: relative; }
   #new-order-form h1 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 600; }
-  #new-order-form fieldset:not(:first-of-type) {
-    display: none; }
+  #new-order-form fieldset {
+    border-radius: 15px;
+    padding: 0rem 2rem 2rem;
+    background-color: #f8f9fa;
+    margin: 0 auto 2rem;
+    /*Posicionamos todos los fieldset uno encima del otro*/
+    position: absolute; }
+    #new-order-form fieldset:not(:first-of-type) {
+      display: none; }
   #new-order-form legend {
     text-align: center;
-    font-weight: 300;
-    font-size: 1.2rem; }
+    font-weight: 300; }
   #new-order-form .form-options {
     margin-top: 1rem;
     margin-bottom: 2rem; }

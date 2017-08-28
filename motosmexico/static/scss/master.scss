@@ -49,21 +49,28 @@ header.navbar {
 
 
 #new-order-form {
-  background-color: $color-light;
   border: none;
-  padding: 2rem 2rem 1rem;
   margin-top: 2rem;
+  position: relative;
   h1 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 600;
   }
-  fieldset:not(:first-of-type) {
-    display: none;
+  fieldset {
+    border-radius: 15px;
+    padding: 0rem 2rem 2rem;
+    background-color: $color-light;
+    margin: 0 auto 2rem; /*Posicionamos todos los fieldset uno encima del otro*/
+    position: absolute;
+
+    &:not(:first-of-type) {
+      display: none;
+    }
   }
   legend {
     text-align: center;
     font-weight: 300;
-    font-size: 1.2rem;
+    // font-size: 1.2rem;
   }
   .form-options {
     margin-top: 1rem;
