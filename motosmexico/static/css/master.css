@@ -18,6 +18,9 @@ header.navbar {
   background-color: #e4e4e4;
   color: #343a40; }
 
+.clear {
+  clear: both; }
+
 .container {
   margin-top: 1rem;
   margin-bottom: 1rem; }
@@ -29,33 +32,83 @@ header.navbar {
     margin: auto .5rem;
     width: 7rem; }
 
+.form-options {
+  margin-top: 1rem;
+  margin-bottom: 2rem; }
+  .form-options .col {
+    margin: .5rem auto; }
+
 .logo-container {
   display: flex;
   justify-content: center; }
 
 #new-order-form {
-  border: none;
+  border: 1px red solid;
   margin-top: 2rem;
   position: relative; }
   #new-order-form h1 {
     font-size: 1.5rem;
     font-weight: 600; }
   #new-order-form fieldset {
-    border-radius: 15px;
-    padding: 0rem 2rem 2rem;
     background-color: #f8f9fa;
-    margin: 0 auto 2rem;
-    /*Posicionamos todos los fieldset uno encima del otro*/
-    position: absolute; }
+    border-radius: 15px;
+    float: left;
+    position: absolute;
+    padding: 0rem 2rem 2rem;
+    margin: 0 auto 2rem; }
     #new-order-form fieldset:not(:first-of-type) {
       display: none; }
-  #new-order-form legend {
+    #new-order-form fieldset legend {
+      text-align: center;
+      font-weight: 300;
+      font-size: 1.2rem; }
+
+/*progreso*/
+#progreso {
+  border: 1px green solid;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  overflow: hidden;
+  counter-reset: step;
+  /*CSS contador para numerar los pasos, lo aprendi en http://www.w3schools.com/*/ }
+  #progreso li {
+    list-style-type: none;
     text-align: center;
-    font-weight: 300; }
-  #new-order-form .form-options {
-    margin-top: 1rem;
-    margin-bottom: 2rem; }
-    #new-order-form .form-options .col {
-      margin: .5rem auto; }
+    text-transform: uppercase;
+    font-size: .7rem;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    /*conectores de progreso*/
+    /*marca activo/completado los pasos en verde*/
+    /*El numero del paso y el conecto quedaran en verde*/ }
+    #progreso li:before {
+      content: counter(step);
+      counter-increment: step;
+      width: 1.5rem;
+      line-height: 1.5rem;
+      display: block;
+      font-size: .7rem;
+      color: #343a40;
+      background: white;
+      border-radius: 3px;
+      border-color: #218838;
+      margin: 0 auto 5px auto;
+      border-radius: 50%; }
+    #progreso li:after {
+      content: '';
+      width: 100%;
+      height: 3px;
+      background: white;
+      position: absolute;
+      left: -50%;
+      top: 9px; }
+    #progreso li:first-child:after {
+      /*el conector no es necesario antes de que el primer paso*/ }
+    #progreso li.active:before, #progreso li.active:after {
+      background: #27AE60;
+      color: white; }
 
 /*# sourceMappingURL=master.css.map */
