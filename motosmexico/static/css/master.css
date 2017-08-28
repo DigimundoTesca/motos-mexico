@@ -6,19 +6,28 @@ header.navbar {
   header.navbar img {
     margin: 0 1rem 0; }
 
-.btn-option {
-  border-radius: 1.2rem;
+.btn {
   cursor: pointer; }
+
+.btn-option {
+  border-radius: 1.2rem; }
   .btn-option:focus {
     box-shadow: none; }
 
 .btn-outline-dark:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #e4e4e4;
   color: #343a40; }
 
 .container {
   margin-top: 1rem;
   margin-bottom: 1rem; }
+
+.fieldset-btns {
+  display: flex;
+  justify-content: center; }
+  .fieldset-btns .btn {
+    margin: auto .5rem;
+    width: 7rem; }
 
 .logo-container {
   display: flex;
@@ -41,5 +50,7 @@ header.navbar {
   #new-order-form .form-options {
     margin-top: 1rem;
     margin-bottom: 2rem; }
+    #new-order-form .form-options .col {
+      margin: .5rem auto; }
 
 /*# sourceMappingURL=master.css.map */

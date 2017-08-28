@@ -3,6 +3,7 @@
 body {
   font-size: 18px;
 }
+
 header.navbar {
   padding: .5rem 1.5rem;
   img {
@@ -10,9 +11,12 @@ header.navbar {
   }
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .btn-option {
   border-radius: 1.2rem;
-  cursor: pointer;
   &:hover{
   }
   &:focus {
@@ -20,13 +24,22 @@ header.navbar {
   }
 }
 .btn-outline-dark:hover {
-  background-color: rgba(0,0,0,0.1);
-  color: $dark-color;
+  background-color: $color-shade;
+  color: $color-dark;
 }
 
 .container {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.fieldset-btns {
+  display: flex;
+  justify-content: center;
+  .btn {
+    margin: auto .5rem;
+    width: 7rem;
+  }
 }
 
 .logo-container {
@@ -36,7 +49,7 @@ header.navbar {
 
 
 #new-order-form {
-  background-color: $shade-color;
+  background-color: $color-light;
   border: none;
   padding: 2rem 2rem 1rem;
   margin-top: 2rem;
@@ -55,5 +68,8 @@ header.navbar {
   .form-options {
     margin-top: 1rem;
     margin-bottom: 2rem;
+    .col {
+      margin: .5rem auto;
+    }
   }
 }
