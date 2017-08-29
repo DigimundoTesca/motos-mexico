@@ -1,22 +1,24 @@
 body {
   font-size: 18px; }
 
-header.navbar {
-  padding: .5rem 1.5rem; }
-  header.navbar img {
-    margin: 0 1rem 0; }
+header.navbar img {
+  margin: 0 1rem 0; }
 
 .btn {
   cursor: pointer; }
+  .btn-warning {
+    color: white; }
+    .btn-warning:focus {
+      color: white; }
+    .btn-warning:hover {
+      color: white; }
+  .btn-outline-secondary:hover {
+    background: #e4e4e4;
+    color: #343a40;
+    border-color: #343a40; }
 
 .btn-option {
   border-radius: 1.2rem; }
-  .btn-option:focus {
-    box-shadow: none; }
-
-.btn-outline-dark:hover {
-  background-color: #e4e4e4;
-  color: #343a40; }
 
 .clear {
   clear: both; }
@@ -35,80 +37,86 @@ header.navbar {
 .form-options {
   margin-top: 1rem;
   margin-bottom: 2rem; }
-  .form-options .col {
-    margin: .5rem auto; }
 
 .logo-container {
   display: flex;
   justify-content: center; }
 
 #new-order-form {
-  border: 1px red solid;
   margin-top: 2rem;
   position: relative; }
+  #new-order-form .col {
+    margin: .5rem auto; }
   #new-order-form h1 {
     font-size: 1.5rem;
     font-weight: 600; }
   #new-order-form fieldset {
     background-color: #f8f9fa;
+    border: 1px #007bff solid;
     border-radius: 15px;
-    float: left;
+    left: 0;
+    right: 0;
     position: absolute;
     padding: 0rem 2rem 2rem;
-    margin: 0 auto 2rem; }
+    margin: 1rem auto 2rem; }
     #new-order-form fieldset:not(:first-of-type) {
       display: none; }
     #new-order-form fieldset legend {
-      text-align: center;
+      border-radius: 1rem;
+      font-size: 1.2rem;
       font-weight: 300;
-      font-size: 1.2rem; }
+      padding: 0 1rem;
+      text-align: center;
+      width: auto; }
 
-/*progreso*/
-#progreso {
-  border: 1px green solid;
-  padding: 1rem;
+.progress-container {
   background: #f8f9fa;
-  border-radius: 1rem;
-  margin: 2rem auto;
-  overflow: hidden;
-  counter-reset: step;
-  /*CSS contador para numerar los pasos, lo aprendi en http://www.w3schools.com/*/ }
-  #progreso li {
-    list-style-type: none;
-    text-align: center;
-    text-transform: uppercase;
+  border-radius: 15px;
+  height: 75px;
+  position: relative;
+  width: 100%; }
+  .progress-container #progress {
+    border-radius: 1rem;
+    counter-reset: step;
+    padding: 0 1rem;
+    margin: 1rem auto;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 1; }
+
+#progress li {
+  list-style-type: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: .7rem;
+  width: 33.33%;
+  float: left;
+  position: relative; }
+  #progress li::before {
+    background-color: white;
+    border-radius: 50%;
+    content: counter(step);
+    counter-increment: step;
+    display: block;
     font-size: .7rem;
-    width: 33.33%;
-    float: left;
-    position: relative;
-    /*conectores de progreso*/
-    /*marca activo/completado los pasos en verde*/
-    /*El numero del paso y el conecto quedaran en verde*/ }
-    #progreso li:before {
-      content: counter(step);
-      counter-increment: step;
-      width: 1.5rem;
-      line-height: 1.5rem;
-      display: block;
-      font-size: .7rem;
-      color: #343a40;
-      background: white;
-      border-radius: 3px;
-      border-color: #218838;
-      margin: 0 auto 5px auto;
-      border-radius: 50%; }
-    #progreso li:after {
-      content: '';
-      width: 100%;
-      height: 3px;
-      background: white;
-      position: absolute;
-      left: -50%;
-      top: 9px; }
-    #progreso li:first-child:after {
-      /*el conector no es necesario antes de que el primer paso*/ }
-    #progreso li.active:before, #progreso li.active:after {
-      background: #27AE60;
-      color: white; }
+    line-height: 1.5rem;
+    margin: 0 auto 5px auto;
+    width: 1.5rem; }
+  #progress li::after {
+    content: "";
+    background-color: white;
+    height: 3px;
+    left: -50%;
+    position: absolute;
+    top: 9px;
+    z-index: -1;
+    width: 100%;
+    transition: all .3s ease; }
+  #progress li:first-child::after {
+    content: none; }
+  #progress li.active::before, #progress li.active::after {
+    background: #28a745;
+    color: white; }
 
 /*# sourceMappingURL=master.css.map */

@@ -5,7 +5,11 @@ body {
 }
 
 header.navbar {
-  padding: .5rem 1.5rem;
+  // padding: .5rem 0rem;
+  // margin: 0;
+  .continer {
+
+  }
   img {
     margin: 0 1rem 0;
   }
@@ -13,20 +17,24 @@ header.navbar {
 
 .btn {
   cursor: pointer;
+  &-warning {
+    color: white;
+    &:focus {
+      color: white;
+    }
+    &:hover {
+      color: white;
+    }
+  }
+  &-outline-secondary:hover {
+    background: $color-shade;
+    color: $color-dark;
+    border-color: $color-dark;
+  }
 }
 
 .btn-option {
   border-radius: 1.2rem;
-  &:hover{
-  }
-  &:focus {
-    box-shadow: none;
-  }
-}
-
-.btn-outline-dark:hover {
-  background-color: $color-shade;
-  color: $color-dark;
 }
 
 .clear {
@@ -50,9 +58,6 @@ header.navbar {
 .form-options {
   margin-top: 1rem;
   margin-bottom: 2rem;
-  .col {
-    margin: .5rem auto;
-  }
 }
 
 .logo-container {
@@ -61,83 +66,100 @@ header.navbar {
 }
 
 #new-order-form {
-  border: 1px red solid;
-  // border: none;
   margin-top: 2rem;
   position: relative;
+
+  .col {
+    margin: .5rem auto;
+  }
+
   h1 {
     font-size: 1.5rem;
     font-weight: 600;
   }
+
   fieldset {
     background-color: $color-light;
+    border: 1px $color-primary solid;
     border-radius: 15px;
-    float: left;
+    left: 0;
+    right: 0;
     position: absolute;
     padding: 0rem 2rem 2rem;
-    margin: 0 auto 2rem;
+    margin: 1rem auto 2rem;
+
     &:not(:first-of-type) {
       display: none;
     }
+
     legend {
-      text-align: center;
-      font-weight: 300;
+      border-radius: 1rem;
       font-size: 1.2rem;
+      font-weight: 300;
+      padding: 0 1rem;
+      text-align: center;
+      width: auto;
     }
   }
 }
 
-/*progreso*/
-#progreso {
-  border: 1px green solid;
-  padding: 1rem;
+.progress-container {
   background: $color-light;
-  border-radius: 1rem;
-  margin: 2rem auto;
-  overflow: hidden;
-  counter-reset: step; /*CSS contador para numerar los pasos, lo aprendi en http://www.w3schools.com/*/
-  li {
-    list-style-type: none;
-    text-align: center;
-    text-transform: uppercase;
+  border-radius: 15px;
+  height: 75px;
+  position: relative;
+  width: 100%;
+  #progress {
+    border-radius: 1rem;
+    counter-reset: step;
+    padding: 0 1rem;
+    margin: 1rem auto;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
+}
+
+#progress li {
+  list-style-type: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: .7rem;
+  width: 33.33%;
+  float: left;
+  position: relative;
+  &::before {
+    background-color: white;
+    border-radius: 50%;
+    content: counter(step);
+    counter-increment: step;
+    display: block;
     font-size: .7rem;
-    width: 33.33%;
-    float: left;
-    position: relative;
-    // z-index: -10;
-    &:before {
-      content: counter(step);
-      counter-increment: step;
-      width: 1.5rem;
-      line-height: 1.5rem;
-      display: block;
-      font-size: .7rem;
-      color: $color-dark;
-      background: white;
-      border-radius: 3px;
-      border-color: $color-success;
-      margin: 0 auto 5px auto;
-      border-radius: 50%;
-    }
-    &:after {
-      content: '';
-      width: 100%;
-      height: 3px;
-      background: white;
-      position: absolute;
-      left: -50%;
-      top: 9px;
-    }
-    /*conectores de progreso*/
-    &:first-child:after {
-      /*el conector no es necesario antes de que el primer paso*/
-      // content: none;
-    }
-    /*marca activo/completado los pasos en verde*/
-    /*El numero del paso y el conecto quedaran en verde*/
-    &.active:before,
-    &.active:after {
-      background: #27AE60;
+    line-height: 1.5rem;
+    margin: 0 auto 5px auto;
+    width: 1.5rem;
+  }
+  &::after {
+    content: "";
+    background-color: white;
+    height: 3px;
+    left: -50%;
+    position: absolute;
+    top: 9px;
+    z-index: -1;
+    width: 100%;
+    transition: all .3s ease;
+
+  }
+  // progress connectors
+  &:first-child::after {
+    content: none;
+  }
+  &.active {
+    &::before,
+    &::after {
+      background: $color-success;
       color: white;
     }
   }

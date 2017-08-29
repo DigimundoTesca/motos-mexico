@@ -4,13 +4,26 @@
 <div class="container">
   <form id="new-order-form" class="form" action="" method="post">
     <h1 class="text-uppercase text-center">Orden de Ingreso</h1>
-
+    <!-- progress -->
+    <div class="progress-container">
+    <ul id="progress">
+      <li class="active">
+        <span>Exterior</span>
+      </li>
+      <li>
+        <span>Lateral izquierdo</span>
+      </li>
+      <li>
+        <span>Lateral derecho</span>
+      </li>
+    </ul>
+    </div>
     {% csrf_token %}
 
     <fieldset class="form-group">
       <legend>Exterior</legend>
       <div class="row form-options">
-        <div id="opt-1" class="col">
+        <div id="opt-1" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio1" type="radio" name="radio1" value="yes" checked>
             <input id="radio2" type="radio" name="radio1" value="no">
@@ -21,7 +34,7 @@
           </button>
         </div>
 
-        <div id="opt-2" class="col">
+        <div id="opt-2" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio4" type="radio" name="radio2" value="yes" checked>
             <input id="radio5" type="radio" name="radio2" value="no">
@@ -32,7 +45,7 @@
           </button>
         </div>
 
-        <div id="opt-3" class="col">
+        <div id="opt-3" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio7" type="radio" name="radio3" value="yes" checked>
             <input id="radio8" type="radio" name="radio3" value="no">
@@ -43,7 +56,7 @@
           </button>
         </div>
 
-        <div id="opt-4" class="col">
+        <div id="opt-4" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio10" type="radio" name="radio4" value="yes" checked>
             <input id="radio11" type="radio" name="radio4" value="no">
@@ -54,7 +67,7 @@
           </button>
         </div>
 
-        <div id="opt-5" class="col">
+        <div id="opt-5" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio13" type="radio" name="radio5" value="yes" checked>
             <input id="radio14" type="radio" name="radio5" value="no">
@@ -73,7 +86,7 @@
     <fieldset class="form-group">
       <legend>Lateral Izquierdo</legend>
       <div class="row form-options">
-        <div id="opt-6" class="col">
+        <div id="opt-6" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio1" type="radio" name="radio6" value="yes" checked>
             <input id="radio2" type="radio" name="radio6" value="no">
@@ -84,7 +97,7 @@
           </button>
         </div>
 
-        <div id="opt-7" class="col">
+        <div id="opt-7" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio4" type="radio" name="radio7" value="yes" checked>
             <input id="radio5" type="radio" name="radio7" value="no">
@@ -95,7 +108,7 @@
           </button>
         </div>
 
-        <div id="opt-8" class="col">
+        <div id="opt-8" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio7" type="radio" name="radio8" value="yes" checked>
             <input id="radio8" type="radio" name="radio8" value="no">
@@ -106,7 +119,7 @@
           </button>
         </div>
 
-        <div id="opt-9" class="col">
+        <div id="opt-9" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio10" type="radio" name="radio9" value="yes" checked>
             <input id="radio11" type="radio" name="radio9" value="no">
@@ -117,7 +130,7 @@
           </button>
         </div>
 
-        <div id="opt-10" class="col">
+        <div id="opt-10" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio13" type="radio" name="radio10" value="yes" checked>
             <input id="radio14" type="radio" name="radio10" value="no">
@@ -137,7 +150,7 @@
     <fieldset class="form-group">
       <legend>Lateral Derecho</legend>
       <div class="row form-options">
-        <div id="opt-6" class="col">
+        <div id="opt-6" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio1" type="radio" name="radio11" value="yes" checked>
             <input id="radio2" type="radio" name="radio11" value="no">
@@ -148,7 +161,7 @@
           </button>
         </div>
 
-        <div id="opt-7" class="col">
+        <div id="opt-7" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio4" type="radio" name="radio12" value="yes" checked>
             <input id="radio5" type="radio" name="radio12" value="no">
@@ -159,7 +172,7 @@
           </button>
         </div>
 
-        <div id="opt-8" class="col">
+        <div id="opt-8" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio7" type="radio" name="radio13" value="yes" checked>
             <input id="radio8" type="radio" name="radio13" value="no">
@@ -170,7 +183,7 @@
           </button>
         </div>
 
-        <div id="opt-9" class="col">
+        <div id="opt-9" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio10" type="radio" name="radio14" value="yes" checked>
             <input id="radio11" type="radio" name="radio14" value="no">
@@ -181,7 +194,7 @@
           </button>
         </div>
 
-        <div id="opt-10" class="col">
+        <div id="opt-10" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
             <input id="radio13" type="radio" name="radio15" value="yes" checked>
             <input id="radio14" type="radio" name="radio15" value="no">
@@ -197,18 +210,7 @@
         <input type="submit" name="submit" class="btn btn-success" value="Enviar">
       </div>
     </fieldset>
-    <!-- progreso -->
-    <ul id="progreso">
-      <li class="active">
-        <span>Exterior</span>
-      </li>
-      <li>
-        <span>Lateral izquierdo</span>
-      </li>
-      <li>
-        <span>Lateral derecho</span>
-      </li>
-    </ul>
+
   </form>
   {# <span class="text-muted">#}
   {# Formulario de ejemplo 1#}
@@ -226,16 +228,16 @@ $(document).ready(function() {
       $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
       $(this).siblings('.radio-group').find('input:radio[value=no]').attr('checked', 'checked');
       $(this).removeClass('btn-outline-secondary');
-      $(this).addClass('btn-outline-primary');
+      $(this).addClass('btn-warning');
     } else if ( option === 'no' ) {
       $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
       $(this).siblings('.radio-group').find('input:radio[value=cd]').attr('checked', 'checked');
-      $(this).removeClass('btn-outline-primary');
-      $(this).addClass('btn-outline-success');
+      $(this).removeClass('btn-warning');
+      $(this).addClass('btn-danger');
     } else {
       $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
       $(this).siblings('.radio-group').find('input:radio[value=yes]').attr('checked', 'checked');
-      $(this).removeClass('btn-outline-success');
+      $(this).removeClass('btn-danger');
       $(this).addClass('btn-outline-secondary');
     }
   });
@@ -244,20 +246,17 @@ $(document).ready(function() {
   $(".next").click(function(){
     current_fs = $(this).parents('fieldset');
     next_fs = $(this).parents('fieldset').next();
-    //activar el siguiente paso en progreso usando el índice de next_fs
-    $("#progreso li").eq($("fieldset").index(next_fs)).addClass("active");
+    $("#progress li").eq($("fieldset").index(next_fs)).addClass("active");
 
-    //mostrar el siguiente fieldset
     next_fs.show();
-    //ocultar el fieldset actual con estilo
+    // Hide actual fieldset
     current_fs.animate({opacity: 0}, {
       step: function(now, mx) {
-        //como la opacidad de current_fs está reducida a 0 - almacenado en "now"
-        //1. escala current_fs hasta 80%
+        // 1. Scale current_fs up to 80%
         scale = 1 - (1 - now) * 0.2;
-        //2. traer next_fs desde la derecha (50%)
+        // 2. Bring next_fs from the right (50%)
         left = (now * 50)+"%";
-        //3. aumentar la opacidad de next_fs a 1 a medida que avanza
+        // 3. Increase opacity of next_fs a 1 as it progresses
         opacity = 1 - now;
         current_fs.css({'transform': 'scale('+scale+')'});
         next_fs.css({'left': left, 'opacity': opacity});
@@ -277,8 +276,8 @@ $(document).ready(function() {
     current_fs = $(this).parents('fieldset');
     previous_fs = $(this).parents('fieldset').prev();
 
-    //des-activar paso actual en progreso
-    $("#progreso li").eq($("fieldset").index(current_fs)).removeClass("active");
+    //des-activar paso actual en progress
+    $("#progress li").eq($("fieldset").index(current_fs)).removeClass("active");
 
     // mostrar el fieldset anterior
     previous_fs.show();
