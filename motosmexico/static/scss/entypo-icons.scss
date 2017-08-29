@@ -1,0 +1,25 @@
+@import "variables";
+
+.svg {
+  &-primary {
+    fill: $color-primary;
+  }
+  &-light {
+    fill: $color-light;
+  }
+  &-shade {
+    fill: $color-shade;
+  }
+  &-success {
+    fill: $color-success;
+  }
+  &-info {
+    fill: $color-info;
+  }
+  &-warning {
+    fill: $color-warning;
+  }
+  &-danger {
+    fill: $color-danger;
+  }
+}

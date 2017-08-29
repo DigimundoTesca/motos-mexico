@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 <div class="container">
   <form id="new-order-form" class="form" action="" method="post">
     <h1 class="text-uppercase text-center">Orden de Ingreso</h1>
     <!-- progress -->
-    <div class="progress-container">
-    <ul id="progress">
+    <div class="progress-container shadow">
+      <ul id="progress">
       <li class="active">
         <span>Exterior</span>
       </li>
@@ -20,7 +21,7 @@
     </div>
     {% csrf_token %}
 
-    <fieldset class="form-group">
+    <fieldset class="form-group shadow">
       <legend>Exterior</legend>
       <div class="row form-options">
         <div id="opt-1" class="col col-12 col-md-6">
@@ -29,9 +30,14 @@
             <input id="radio2" type="radio" name="radio1" value="no">
             <input id="radio3" type="radio" name="radio1" value="cd">
           </div>
-          <button type="button" type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Indicadores del tablero
-          </button>
+          <div class="row">
+              <button type="button" type="button" class="btn btn-outline-secondary btn-option col">
+                Indicadores del tablero
+              </button>
+              <div class="icon-option rounded-circle">
+                <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+              </div>
+          </div>
         </div>
 
         <div id="opt-2" class="col col-12 col-md-6">
@@ -40,9 +46,14 @@
             <input id="radio5" type="radio" name="radio2" value="no">
             <input id="radio6" type="radio" name="radio2" value="cd">
           </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Testigo de FI
-          </button>
+          <div class="row">
+            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
+              Testigo de FI
+            </button>
+            <div class="icon-option rounded-circle">
+              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+            </div>
+          </div>
         </div>
 
         <div id="opt-3" class="col col-12 col-md-6">
@@ -92,7 +103,10 @@
             <input id="radio2" type="radio" name="radio6" value="no">
             <input id="radio3" type="radio" name="radio6" value="cd">
           </div>
-          <button type="button" type="button" class="btn btn-outline-secondary btn-option btn-block">
+          <div class="icon-option rounded-circle">
+            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
+          </div>
+          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
             Direccional
           </button>
         </div>
@@ -102,6 +116,9 @@
             <input id="radio4" type="radio" name="radio7" value="yes" checked>
             <input id="radio5" type="radio" name="radio7" value="no">
             <input id="radio6" type="radio" name="radio7" value="cd">
+          </div>
+          <div class="icon-option rounded-circle">
+            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
           </div>
           <button type="button" class="btn btn-outline-secondary btn-option btn-block">
             Espejo
@@ -114,6 +131,9 @@
             <input id="radio8" type="radio" name="radio8" value="no">
             <input id="radio9" type="radio" name="radio8" value="cd">
           </div>
+          <div class="icon-option rounded-circle">
+            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
+          </div>
           <button type="button" class="btn btn-outline-secondary btn-option btn-block">
             Tapa lateral superior
           </button>
@@ -125,6 +145,9 @@
             <input id="radio11" type="radio" name="radio9" value="no">
             <input id="radio12" type="radio" name="radio9" value="cd">
           </div>
+          <div class="icon-option rounded-circle">
+            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
+          </div>
           <button type="button" class="btn btn-outline-secondary btn-option btn-block">
             Tapa lateral inferior (lower)
           </button>
@@ -135,6 +158,9 @@
             <input id="radio13" type="radio" name="radio10" value="yes" checked>
             <input id="radio14" type="radio" name="radio10" value="no">
             <input id="radio15" type="radio" name="radio10" value="cd">
+          </div>
+          <div class="icon-option rounded-circle">
+            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
           </div>
           <button type="button" class="btn btn-outline-secondary btn-option btn-block">
             Tapa de estator
@@ -156,7 +182,10 @@
             <input id="radio2" type="radio" name="radio11" value="no">
             <input id="radio3" type="radio" name="radio11" value="cd">
           </div>
-          <button type="button" type="button" class="btn btn-outline-secondary btn-option btn-block">
+          <div class="icon-option rounded-circle">
+            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
+          </div>
+          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
             Direccional
           </button>
         </div>
@@ -212,9 +241,6 @@
     </fieldset>
 
   </form>
-  {# <span class="text-muted">#}
-  {# Formulario de ejemplo 1#}
-  {# </span>#}
 </div>
 {% endblock %}
 
@@ -223,20 +249,24 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $('.btn-option').click(function(event) {
-    let option = $(this).siblings('.radio-group').find('input[type=radio]:checked').val();
+
+    let radioGroup = $(this).parent().siblings('.radio-group');
+    let radioChecked = radioGroup.find('input[type=radio]:checked');
+    let option = radioGroup.find('input[type=radio]:checked').val();
+
     if ( option === 'yes' ) {
-      $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
-      $(this).siblings('.radio-group').find('input:radio[value=no]').attr('checked', 'checked');
+      radioChecked.attr('checked',false);
+      radioGroup.find('input:radio[value=no]').attr('checked', 'checked');
       $(this).removeClass('btn-outline-secondary');
       $(this).addClass('btn-warning');
     } else if ( option === 'no' ) {
-      $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
-      $(this).siblings('.radio-group').find('input:radio[value=cd]').attr('checked', 'checked');
+      radioChecked.attr('checked',false);
+      radioGroup.find('input:radio[value=cd]').attr('checked', 'checked');
       $(this).removeClass('btn-warning');
       $(this).addClass('btn-danger');
     } else {
-      $(this).siblings('.radio-group').find('input[type=radio]:checked').attr('checked',false);
-      $(this).siblings('.radio-group').find('input:radio[value=yes]').attr('checked', 'checked');
+      radioChecked.attr('checked',false);
+      radioGroup.find('input:radio[value=yes]').attr('checked', 'checked');
       $(this).removeClass('btn-danger');
       $(this).addClass('btn-outline-secondary');
     }

@@ -38,9 +38,29 @@ header.navbar img {
   margin-top: 1rem;
   margin-bottom: 2rem; }
 
+.icon-option {
+  align-self: center;
+  background-color: #007bff;
+  cursor: pointer;
+  margin: .15rem;
+  padding: .5rem;
+  transition: all .3s ease;
+  width: 35px;
+  height: 35px; }
+  .icon-option:hover {
+    background-color: #17a3b8; }
+  .icon-option:active {
+    background-color: #007bff; }
+  .icon-option img {
+    color: white;
+    width: 100%; }
+
 .logo-container {
   display: flex;
   justify-content: center; }
+
+.shadow {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25); }
 
 #new-order-form {
   margin-top: 2rem;
@@ -52,7 +72,6 @@ header.navbar img {
     font-weight: 600; }
   #new-order-form fieldset {
     background-color: #f8f9fa;
-    border: 1px #007bff solid;
     border-radius: 15px;
     left: 0;
     right: 0;
