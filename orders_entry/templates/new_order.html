@@ -263,29 +263,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+  var current_fs,
+    next_fs,
+    previous_fs;
 
-  /** Show add photo icon */
+  /** Show an jquery eement with display.none */
   function showElement(element) {
-
+    element.show();
   }
-  /** Hides add photo icon */
 
+  /** Hide an jquery eement with display.none */
   function hideElement(element) {
-
-}
+    element.hide();
+  }
   $('.btn-option').click(function(event) {
-
     let radioGroup = $(this).parent().siblings('.radio-group');
     let radioChecked = radioGroup.find('input[type=radio]:checked');
     let option = radioGroup.find('input[type=radio]:checked').val();
-    let iconPhoto = $(this);
-    console.log($(this));
+    let iconPhoto = $(this).siblings('.icon-option');
+
     if ( option === 'yes' ) {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=no]').attr('checked', 'checked');
       $(this).removeClass('btn-outline-secondary');
       $(this).addClass('btn-warning');
-      showPhotoIcon();
+      showElement(iconPhoto);
     } else if ( option === 'no' ) {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=cd]').attr('checked', 'checked');
@@ -296,9 +298,10 @@ $(document).ready(function() {
       radioGroup.find('input:radio[value=yes]').attr('checked', 'checked');
       $(this).removeClass('btn-danger');
       $(this).addClass('btn-outline-secondary');
+      hideElement(iconPhoto);
     }
   });
-  var current_fs, next_fs, previous_fs; //fieldsets
+
 
   $(".next").click(function(){
     current_fs = $(this).parents('fieldset');
