@@ -30,7 +30,7 @@
             <input id="radio2" type="radio" name="radio1" value="no">
             <input id="radio3" type="radio" name="radio1" value="cd">
           </div>
-          <div class="row">
+          <div class="row opts-container">
               <button type="button" type="button" class="btn btn-outline-secondary btn-option col">
                 Indicadores del tablero
               </button>
@@ -46,7 +46,7 @@
             <input id="radio5" type="radio" name="radio2" value="no">
             <input id="radio6" type="radio" name="radio2" value="cd">
           </div>
-          <div class="row">
+          <div class="row opts-container">
             <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
               Testigo de FI
             </button>
@@ -58,13 +58,18 @@
 
         <div id="opt-3" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
-            <input id="radio7" type="radio" name="radio3" value="yes" checked>
-            <input id="radio8" type="radio" name="radio3" value="no">
-            <input id="radio9" type="radio" name="radio3" value="cd">
+            <input id="radio4" type="radio" name="radio3" value="yes" checked>
+            <input id="radio5" type="radio" name="radio3" value="no">
+            <input id="radio6" type="radio" name="radio3" value="cd">
           </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Kilometraje
-          </button>
+          <div class="row opts-container">
+            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
+              Kilometraje
+            </button>
+            <div class="icon-option rounded-circle">
+              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+            </div>
+          </div>
         </div>
 
         <div id="opt-4" class="col col-12 col-md-6">
@@ -73,9 +78,14 @@
             <input id="radio11" type="radio" name="radio4" value="no">
             <input id="radio12" type="radio" name="radio4" value="cd">
           </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Indicadores de Gasolina
-          </button>
+          <div class="row opts-container">
+            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
+              Indicadores de gasolina
+            </button>
+            <div class="icon-option rounded-circle">
+              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+            </div>
+          </div>
         </div>
 
         <div id="opt-5" class="col col-12 col-md-6">
@@ -84,9 +94,14 @@
             <input id="radio14" type="radio" name="radio5" value="no">
             <input id="radio15" type="radio" name="radio5" value="cd">
           </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Mando de direccionales
-          </button>
+          <div class="row opts-container">
+            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
+              Mando de direccionales
+            </button>
+            <div class="icon-option rounded-circle">
+              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+            </div>
+          </div>
         </div>
       </div>
       <div class="row fieldset-btns">
@@ -248,17 +263,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+
+  /** Show add photo icon */
+  function showElement(element) {
+
+  }
+  /** Hides add photo icon */
+
+  function hideElement(element) {
+
+}
   $('.btn-option').click(function(event) {
 
     let radioGroup = $(this).parent().siblings('.radio-group');
     let radioChecked = radioGroup.find('input[type=radio]:checked');
     let option = radioGroup.find('input[type=radio]:checked').val();
-
+    let iconPhoto = $(this);
+    console.log($(this));
     if ( option === 'yes' ) {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=no]').attr('checked', 'checked');
       $(this).removeClass('btn-outline-secondary');
       $(this).addClass('btn-warning');
+      showPhotoIcon();
     } else if ( option === 'no' ) {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=cd]').attr('checked', 'checked');
