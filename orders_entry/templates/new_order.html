@@ -22,7 +22,10 @@
     {% csrf_token %}
 
     <fieldset class="form-group shadow">
-      <legend>Exterior</legend>
+      <legend>
+        <span class="number"></span>
+        Exterior
+      </legend>
       <div class="row form-options">
         <div id="opt-1" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
@@ -31,10 +34,10 @@
             <input id="radio3" type="radio" name="radio1" value="cd">
           </div>
           <div class="row opts-container">
-              <button type="button" type="button" class="btn btn-outline-secondary btn-option col">
+              <button type="button" class="btn btn-outline-secondary btn-option col">
                 Indicadores del tablero
               </button>
-              <div class="icon-option rounded-circle">
+              <div class="icon-option invisible rounded-circle">
                 <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
               </div>
           </div>
@@ -50,7 +53,7 @@
             <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
               Testigo de FI
             </button>
-            <div class="icon-option rounded-circle">
+            <div class="icon-option invisible rounded-circle">
               <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
             </div>
           </div>
@@ -66,7 +69,7 @@
             <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
               Kilometraje
             </button>
-            <div class="icon-option rounded-circle">
+            <div class="icon-option invisible rounded-circle">
               <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
             </div>
           </div>
@@ -82,7 +85,7 @@
             <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
               Indicadores de gasolina
             </button>
-            <div class="icon-option rounded-circle">
+            <div class="icon-option invisible rounded-circle">
               <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
             </div>
           </div>
@@ -98,7 +101,7 @@
             <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
               Mando de direccionales
             </button>
-            <div class="icon-option rounded-circle">
+            <div class="icon-option invisible rounded-circle">
               <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
             </div>
           </div>
@@ -110,7 +113,10 @@
     </fieldset>
 
     <fieldset class="form-group">
-      <legend>Lateral Izquierdo</legend>
+      <legend>
+        <span class="number"></span>
+        Lateral Izquierdo
+      </legend>
       <div class="row form-options">
         <div id="opt-6" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
@@ -189,7 +195,10 @@
     </fieldset>
 
     <fieldset class="form-group">
-      <legend>Lateral Derecho</legend>
+      <legend>
+        <span class="number"></span>
+        Lateral Derecho
+      </legend>
       <div class="row form-options">
         <div id="opt-6" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
@@ -267,15 +276,6 @@ $(document).ready(function() {
     next_fs,
     previous_fs;
 
-  /** Show an jquery eement with display.none */
-  function showElement(element) {
-    element.show();
-  }
-
-  /** Hide an jquery eement with display.none */
-  function hideElement(element) {
-    element.hide();
-  }
   $('.btn-option').click(function(event) {
     let radioGroup = $(this).parent().siblings('.radio-group');
     let radioChecked = radioGroup.find('input[type=radio]:checked');
@@ -285,20 +285,24 @@ $(document).ready(function() {
     if ( option === 'yes' ) {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=no]').attr('checked', 'checked');
+      $(this).addClass('active');
       $(this).removeClass('btn-outline-secondary');
       $(this).addClass('btn-warning');
-      showElement(iconPhoto);
+      iconPhoto.removeClass('invisible')
+
     } else if ( option === 'no' ) {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=cd]').attr('checked', 'checked');
       $(this).removeClass('btn-warning');
       $(this).addClass('btn-danger');
+
     } else {
       radioChecked.attr('checked',false);
       radioGroup.find('input:radio[value=yes]').attr('checked', 'checked');
+      $(this).removeClass('active');
       $(this).removeClass('btn-danger');
       $(this).addClass('btn-outline-secondary');
-      hideElement(iconPhoto);
+      iconPhoto.addClass('invisible')
     }
   });
 
@@ -331,25 +335,27 @@ $(document).ready(function() {
 
   });
 
-
   $(".previous").click(function(){
     current_fs = $(this).parents('fieldset');
     previous_fs = $(this).parents('fieldset').prev();
 
-    //des-activar paso actual en progress
-    $("#progress li").eq($("fieldset").index(current_fs)).removeClass("active");
+    // Unactiv actual progress step
+    $("#progress").find("li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-    // mostrar el fieldset anterior
+    // Show the last fieldset
     previous_fs.show();
-    //ocultar el fieldset actual con estilo
+    // Hide the actual fieldset with style
     current_fs.animate({opacity: 0}, {
       step: function(now, mx) {
-        //as the opacity of current_fs reduces to 0 - stored in "now"
-        //1. escalar previous_fs de 80% a 100%
+        var scale,
+            left,
+            opacity;
+        // As the opacity of current_fs reduces to 0 - stored in "now"
+        // 1. Scale previous_fs de 80% a 100%
         scale = 0.8 + (1 - now) * 0.2;
-        //2. take current_fs to the right(50%) - from 0%
-        left = ((1-now) * 50)+"%";
-        //3. increase opacity of previous_fs to 1 as it moves in
+        // 2. take current_fs to the right(50%) - from 0%
+        left = ((1 - now) * 50) + "%";
+        // 3. increase opacity of previous_fs to 1 as it moves in
         opacity = 1 - now;
         current_fs.css({'left': left});
         previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
@@ -358,9 +364,13 @@ $(document).ready(function() {
       complete: function(){
         current_fs.hide();
       },
-      //Esto viene del plugin easing
-      easing: 'easeInOutBack',
+      easing: 'easeInOutBack'
     });
+  });
+
+  /** Set number fields */
+  $('.number').each(function (count) {
+    $(this).text(count + 1);
   });
 
 });

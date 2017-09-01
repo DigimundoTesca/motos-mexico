@@ -10,7 +10,8 @@ header.navbar #navbarNav {
   justify-content: flex-end; }
 
 .btn {
-  cursor: pointer; }
+  cursor: pointer;
+  height: 2.5rem; }
   .btn-warning {
     color: white; }
     .btn-warning:focus {
@@ -23,8 +24,9 @@ header.navbar #navbarNav {
     border-color: #343a40; }
 
 .btn-option {
-  border-radius: 1.2rem;
-  transition: all .3s ease; }
+  border-radius: 1.2rem; }
+  .btn-option.active {
+    border-radius: 1.2rem 0 0 1.2rem; }
 
 .clear {
   clear: both; }
@@ -42,14 +44,17 @@ header.navbar #navbarNav {
 
 .icon-option {
   align-self: center;
-  background-color: #007bff;
+  background-color: #4da3ff;
   cursor: pointer;
-  display: none;
   margin: .15rem;
   padding: .5rem;
   transition: all .3s ease;
-  width: 35px;
-  height: 35px; }
+  height: 2.5rem;
+  width: 2.5rem; }
+  .icon-option.invisible {
+    width: 0;
+    padding: 0;
+    transition: all .3s ease; }
   .icon-option:hover {
     background-color: #17a3b8; }
   .icon-option:active {
@@ -63,7 +68,8 @@ header.navbar #navbarNav {
   justify-content: center; }
 
 .opts-container .icon-option {
-  margin-left: .5rem; }
+  border-radius: 0 1.2rem 1.2rem 0;
+  margin: 0; }
 
 .shadow {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25); }
@@ -94,10 +100,23 @@ header.navbar #navbarNav {
       font-size: 1.2rem;
       font-weight: 300;
       text-align: center;
+      vertical-align: middle;
       margin-top: 2rem;
       padding: 0 1rem;
       position: absolute;
       width: auto; }
+      #new-order-form fieldset legend span.number {
+        background-color: #5fcf80;
+        color: #fff;
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        font-size: 0.8em;
+        margin-right: 4px;
+        line-height: 30px;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+        border-radius: 100%; }
     #new-order-form fieldset .form-options {
       margin-top: 4rem; }
 
@@ -150,7 +169,7 @@ header.navbar #navbarNav {
   #progress li:first-child::after {
     content: none; }
   #progress li.active::before, #progress li.active::after {
-    background: #28a745;
+    background: #5fcf80;
     color: white; }
 
 @media screen and (max-width: 575px) {

@@ -1,5 +1,4 @@
 @import "variables";
-
 body {
   font-size: 18px;
 }
@@ -19,6 +18,7 @@ header.navbar {
 
 .btn {
   cursor: pointer;
+  height: 2.5rem;
   &-warning {
     color: white;
     &:focus {
@@ -37,7 +37,9 @@ header.navbar {
 
 .btn-option {
   border-radius: 1.2rem;
-  transition: all .3s ease;
+  &.active {
+  border-radius: 1.2rem 0 0 1.2rem;
+  }
 }
 
 .clear {
@@ -58,18 +60,22 @@ header.navbar {
   }
 }
 
-
 .icon-option {
   align-self: center;
-  background-color: $color-primary;
+  background-color: $color-primary-light;
   cursor: pointer;
-  display: none;
   margin: .15rem;
   padding: .5rem;
   transition: all .3s ease;
-  width: 35px;
-  height: 35px;
 
+  height: 2.5rem;
+  width: 2.5rem;
+
+  &.invisible {
+    width: 0;
+    padding: 0;
+    transition: all .3s ease;
+  }
   &:hover {
     background-color: $color-info;
   }
@@ -91,7 +97,8 @@ header.navbar {
 
 .opts-container {
   .icon-option {
-    margin-left: .5rem;
+    border-radius: 0 1.2rem 1.2rem 0;
+    margin: 0;
   }
 }
 
@@ -133,12 +140,25 @@ header.navbar {
       font-size: 1.2rem;
       font-weight: 300;
       text-align: center;
+      vertical-align: middle;
 
-      // margin-left: 2rem;
       margin-top: 2rem;
       padding: 0 1rem;
       position: absolute;
       width: auto;
+      span.number {
+        background-color: $color-success;
+        color: #fff;
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        font-size: 0.8em;
+        margin-right: 4px;
+        line-height: 30px;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+        border-radius: 100%;
+      }
     }
 
     .form-options {
