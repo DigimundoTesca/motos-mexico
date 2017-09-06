@@ -160,5 +160,11 @@ pip-selfcheck.json
 # SQLite3
 *.sqlite3
 
+orders_entry/migrations/
+!/orders_entry/migrations/__init__.py
+
+/motorcycles/migrations/
+!/motorcycles/migrations/__init__.py
+
 /orders_entry/migrations/
 !/orders_entry/migrations/__init__.py
