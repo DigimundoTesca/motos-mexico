@@ -37,11 +37,13 @@ header.navbar {
 
 .btn-option {
   border-radius: 1.2rem;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
   &.active {
-  border-radius: 1.2rem 0 0 1.2rem;
+    border-radius: 1.2rem 0 0 1.2rem;
   }
 }
-
 .clear {
   clear: both;
 }

@@ -32,10 +32,14 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-THIRD_APPS = []
+THIRD_APPS = [
+    'nested_inline',
+]
 
 USER_APPS = [
     'orders_entry.apps.OrdersEntryConfig',
+    'clients.apps.ClientsConfig',
+    'motorcycles.apps.MotorcyclesConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
