@@ -339,7 +339,7 @@ $(document).ready(function() {
     current_fs = $(this).parents('fieldset');
     previous_fs = $(this).parents('fieldset').prev();
 
-    // Unactiv actual progress step
+    // Un-active actual progress step
     $("#progress").find("li").eq($("fieldset").index(current_fs)).removeClass("active");
 
     // Show the last fieldset

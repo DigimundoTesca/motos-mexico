@@ -36,6 +36,7 @@ THIRD_APPS = []
 
 USER_APPS = [
     'orders_entry.apps.OrdersEntryConfig',
+    'clients.apps.ClientsConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
