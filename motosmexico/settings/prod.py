@@ -2,7 +2,8 @@ from motosmexico.settings.develop import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['motosmexico.digimundo.com.mx']
+# ALLOWED_HOSTS = ['motosmexico.digimundo.com.mx', 'motosmexico-env-dev.us-west-2.elasticbenstalk.com']
+ALLOWED_HOSTS = ['*']
 
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
