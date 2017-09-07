@@ -1,0 +1,20 @@
+branch-defaults:
+  aws-s3:
+    environment: motosmexico-env
+environment-defaults:
+  motosmexico-env:
+    branch: null
+    repository: null
+global:
+  application_name: motos-mexico
+  default_ec2_keyname: null
+  default_platform: arn:aws:elasticbeanstalk:us-west-2::platform/Preconfigured Docker
+    - Python 3.4 running on 64bit Debian/2.7.3
+  default_region: us-west-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: git
+  workspace_type: Application
