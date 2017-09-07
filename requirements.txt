@@ -2,4 +2,7 @@ boto==2.48.0
 Django==1.11.4
 django-nested-inline==0.3.7
 django-storages==1.6.5
+gunicorn==19.7.1
+psycopg2==2.7.3.1
 pytz==2017.2
+sqlparse==0.2.3
