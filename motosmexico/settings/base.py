@@ -154,5 +154,5 @@ S3Connection.DefaultHost = 's3-us-west-2.amazonaws.com'
 
 # STATIC_URL = '/static/'
 # MEDIA_URL = '/media/'
-STATIC_URL = "http://%s/%s" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
-MEDIA_URL = "http://%s/%s" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+STATIC_URL = "http://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+MEDIA_URL = "http://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
