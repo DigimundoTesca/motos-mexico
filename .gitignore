@@ -169,6 +169,9 @@ motorcycles/migrations/*
 clients/migrations/*
 !clients/migrations/__init__.py
 
+scheduler/migrations/*
+!scheduler/migrations/__init__.py
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/config.yml

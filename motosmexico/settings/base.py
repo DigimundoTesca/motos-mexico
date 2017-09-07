@@ -37,6 +37,7 @@ DJANGO_APPS = [
 THIRD_APPS = [
     'nested_inline',
     'storages',
+    'scheduler.apps.SchedulerConfig',
 ]
 
 USER_APPS = [
