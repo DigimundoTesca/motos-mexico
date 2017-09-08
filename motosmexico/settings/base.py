@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+from boto.s3.connection import ProtocolIndependentOrdinaryCallingFormat
+from boto.s3.connection import S3Connection
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -35,6 +37,7 @@ DJANGO_APPS = [
 THIRD_APPS = [
     'nested_inline',
     'storages',
+    'scheduler.apps.SchedulerConfig',
 ]
 
 USER_APPS = [
@@ -44,7 +47,6 @@ USER_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -86,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'motosmexico.wsgi.application'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -104,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -125,12 +125,35 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/')
 ]
 
-STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles/')
-
-MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media/')
 
 LOGIN_URL = '/login/'
+
+# AWS STATICS
+AWS_HEADERS = {
+    'Expires': 'Thu, 15 Apr 2099 20:00:00 GMT',
+    'Cache-Control': 'max-age=956080000',
+}
+
+STATICFILES_LOCATION = 'static'
+MEDIAFILES_LOCATION = 'media'
+
+AWS_STORAGE_BUCKET_NAME = os.getenv('MOTOS_MEXICO_S3_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.getenv('MOTOS_MEXICO_S3_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('MOTOS_MEXICO_S3_SECRET_ACCESS_KEY')
+
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3-us-west-2.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_SECURE_URLS = False
+
+AWS_S3_CALLING_FORMAT = ProtocolIndependentOrdinaryCallingFormat()
+S3Connection.DefaultHost = 's3-us-west-2.amazonaws.com'
+
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
+STATIC_URL = "http://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+MEDIA_URL = "http://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)

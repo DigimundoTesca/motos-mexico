@@ -166,5 +166,14 @@ orders_entry/migrations/*
 motorcycles/migrations/*
 !motorcycles/migrations/__init__.py
 
-orders_entry/migrations/*
-!orders_entry/migrations/__init__.py
+clients/migrations/*
+!clients/migrations/__init__.py
+
+scheduler/migrations/*
+!scheduler/migrations/__init__.py
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/config.yml
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
