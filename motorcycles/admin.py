@@ -23,8 +23,9 @@ class MotorcycleModelAdmin(admin.ModelAdmin):
 
 @admin.register(MotorcyclePart)
 class MotorcyclePartAdmin(admin.ModelAdmin):
-    list_display = ('name', 'motorcycle_region', 'status_group', )
-    list_editable = ('status_group', )
+    list_display = ('id', 'name', 'motorcycle_region', 'status_group', )
+    list_display_links = ('id', 'motorcycle_region', )
+    list_editable = ('status_group', 'name')
     ordering = ('motorcycle_region', 'name')
 
 admin.site.register(MotorclycleBrand)

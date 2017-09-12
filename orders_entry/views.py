@@ -2,8 +2,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 
-from motorcycles.models import MotorcycleRegion
-# Create your views here.
+from motorcycles.models import MotorcycleRegion, MotorcyclePart
 
 
 def home(request):
@@ -19,7 +18,9 @@ def new_order(request):
         print(request.POST)
     template = 'new_order.html'
     motrocycle_regions = MotorcycleRegion.objects.all()
+    motorcycle_parts = MotorcyclePart.objects.all()
     context = {
-     'regions': motrocycle_regions
+     'regions': motrocycle_regions,
+     'parts': motorcycle_parts,
     }
     return render(request, template, context)

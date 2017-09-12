@@ -96,6 +96,8 @@ header.navbar #navbarNav {
     position: absolute;
     padding: .5rem 1rem 1.5rem;
     margin: 1rem auto 2rem; }
+    #new-order-form fieldset .light {
+      font-weight: 300; }
     #new-order-form fieldset:not(:first-of-type) {
       display: none; }
     #new-order-form fieldset legend {
@@ -140,6 +142,21 @@ header.navbar #navbarNav {
     position: absolute;
     width: 100%;
     z-index: 1; }
+
+.life-tyre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .life-tyre-container label {
+    padding-top: 0;
+    padding-bottom: 0; }
+
+.rim-tyre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .rim-tyre-container label:first-child {
+    padding: 0 1rem 0 .5rem; }
 
 #progress li {
   list-style-type: none;

@@ -19,214 +19,297 @@
       </ul>
     </div>
     {% csrf_token %}
+
+    <!-- FIELSETS FOR MOTORCYCLE PARTS -->
     {% for region in regions %}
     <fieldset class="form-group shadow">
       <legend>
         <span class="number"></span>
         {{ region }}
       </legend>
+
       <div class="row form-options">
-        <div id="opt-1" class="col col-12 col-md-6">
+        {% for part in parts %}
+        {% if part.motorcycle_region == region %}
+        <div id="opt-{{part.id}}" class="col col-12 col-md-6">
           <div class="radio-group" hidden>
-            <input id="radio1" type="radio" name="radio1" value="yes" checked>
-            <input id="radio2" type="radio" name="radio1" value="no">
-            <input id="radio3" type="radio" name="radio1" value="cd">
+            <input id="radio-{{part.id}}-1" type="radio" name="radio-{{part.id}}" value="1" checked>
+            <input id="radio-{{part.id}}-2" type="radio" name="radio-{{part.id}}" value="2">
+            <input id="radio-{{partid}}-3" type="radio" name="radio-{{part.id}}" value="3">
           </div>
           <div class="row opts-container">
-              <button type="button" class="btn btn-outline-secondary btn-option col">
-                Indicadores del tablero
-              </button>
-              <div class="icon-option invisible rounded-circle">
-                <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
-              </div>
-          </div>
-        </div>
-
-        <div id="opt-2" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio4" type="radio" name="radio2" value="yes" checked>
-            <input id="radio5" type="radio" name="radio2" value="no">
-            <input id="radio6" type="radio" name="radio2" value="cd">
-          </div>
-          <div class="row opts-container">
-            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
-              Testigo de FI
+            <button type="button" class="btn btn-outline-secondary btn-option col">
+              {{ part }}
             </button>
             <div class="icon-option invisible rounded-circle">
               <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
             </div>
           </div>
         </div>
-
-        <div id="opt-3" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio4" type="radio" name="radio3" value="yes" checked>
-            <input id="radio5" type="radio" name="radio3" value="no">
-            <input id="radio6" type="radio" name="radio3" value="cd">
-          </div>
-          <div class="row opts-container">
-            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
-              Kilometraje
-            </button>
-            <div class="icon-option invisible rounded-circle">
-              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
-            </div>
-          </div>
-        </div>
-
-        <div id="opt-4" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio10" type="radio" name="radio4" value="yes" checked>
-            <input id="radio11" type="radio" name="radio4" value="no">
-            <input id="radio12" type="radio" name="radio4" value="cd">
-          </div>
-          <div class="row opts-container">
-            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
-              Indicadores de gasolina
-            </button>
-            <div class="icon-option invisible rounded-circle">
-              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
-            </div>
-          </div>
-        </div>
-
-        <div id="opt-5" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio13" type="radio" name="radio5" value="yes" checked>
-            <input id="radio14" type="radio" name="radio5" value="no">
-            <input id="radio15" type="radio" name="radio5" value="cd">
-          </div>
-          <div class="row opts-container">
-            <button type="button" class="btn btn-outline-secondary btn-option btn-block col">
-              Mando de direccionales
-            </button>
-            <div class="icon-option invisible rounded-circle">
-              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
-            </div>
-          </div>
-        </div>
+        {% endif %}
+        {% endfor %}
       </div>
+
       <div class="row fieldset-btns">
         <input type="button" name="previous" class="btn btn-primary previous action-button" value="Anterior">
         <input type="button" name="next" class="btn btn-primary next action-button" value="Siguiente">
       </div>
+
     </fieldset>
     {% endfor %}
 
-  </form>
-</div>
-{% endblock %}
+    <!-- TYRE FIELDSET -->
+    <fieldset class="form-group shadow">
+      <legend>
+        <span class="number"></span>
+        Llantas
+      </legend>
 
-{% block scripts %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-  var current_fs,
-    next_fs,
-    previous_fs;
+      <!-- Left Tyre -->
+      <div class="row form-options">
+        <div class="col-12 text-center">
+          <h5 class="light">Llanta Izquierda</h5>
+        </div>
+        <div id="opt-9-2" class="col">
+          <div class="radio-group" hidden>
+            <input id="radio-ltyre-1" type="radio" name="radio-ltyre-life" value="1" checked>
+            <input id="radio-lyre-2" type="radio" name="radio-ltyre-life" value="2">
+            <input id="radio-ltyre-3" type="radio" name="radio-ltyre-life" value="3">
+          </div>
 
-  $('.btn-option').click(function(event) {
-    let radioGroup = $(this).parent().siblings('.radio-group');
-    let radioChecked = radioGroup.find('input[type=radio]:checked');
-    let option = radioGroup.find('input[type=radio]:checked').val();
-    let iconPhoto = $(this).siblings('.icon-option');
+          <div class="row opts-container">
+            <div class="col-6 col-md-4 life-tyre-container mb-1">
+              <label for="left-tyre-indicator" class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="left-tyre-indicator" id="left-tyre-indicator" checked>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">Hay llanta</span>
+              </label>
+            </div>
 
-    if ( option === 'yes' ) {
-      radioChecked.attr('checked',false);
-      radioGroup.find('input:radio[value=no]').attr('checked', 'checked');
-      $(this).addClass('active');
-      $(this).removeClass('btn-outline-secondary');
-      $(this).addClass('btn-warning');
-      iconPhoto.removeClass('invisible')
+            <div class="col-6 col-md-4 rim-tyre-container mb-2">
+              <label>Rin</label>
+              <label for="ltyre-rim-A" class="custom-control custom-radio">
+                <input type="radio" name="ltyre-rim" value="A" class="custom-control-input" id="ltyre-rim-A" checked>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">A</span>
+              </label>
+              <label for="ltyre-rim-B" class="custom-control custom-radio">
+                <input type="radio" name="ltyre-rim" value="B" class="custom-control-input" id="ltyre-rim-B">
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description">B</span>
+              </label>
+            </div>
 
-    } else if ( option === 'no' ) {
-      radioChecked.attr('checked',false);
-      radioGroup.find('input:radio[value=cd]').attr('checked', 'checked');
-      $(this).removeClass('btn-warning');
-      $(this).addClass('btn-danger');
+            <button type="button" class="btn btn-outline-secondary btn-option col-12 col-md-4 mb-2">
+              Vida Llanta Izquierda
+            </button>
+            <div class="icon-option invisible rounded-circle">
+              <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="form-group col-md-6">
+              <label for="ltyre-condition">Condición</label>
+              <input type="text" name="ltyre-condition" placeholder="Condición" id="ltyre-condition" class="form-control">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="ltyre-brand">Marca</label>
+              <input type="text" name="ltyre-brand" placeholder="Marca" id="ltyre-condition" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
 
-    } else {
-      radioChecked.attr('checked',false);
-      radioGroup.find('input:radio[value=yes]').attr('checked', 'checked');
-      $(this).removeClass('active');
-      $(this).removeClass('btn-danger');
-      $(this).addClass('btn-outline-secondary');
-      iconPhoto.addClass('invisible')
-    }
-  });
+
+          <!-- Right Tyre -->
+          <div class="row form-options">
+            <div class="col-12 text-center">
+              <h5 class="light">Llanta Derecha</h5>
+            </div>
+            <div id="opt-9-2" class="col">
+              <div class="radio-group" hidden>
+                <input id="radio-rtyre-1" type="radio" name="radio-rtyre-life" value="1" checked>
+                <input id="radio-ryre-2" type="radio" name="radio-rtyre-life" value="2">
+                <input id="radio-rtyre-3" type="radio" name="radio-rtyre-life" value="3">
+              </div>
+
+              <div class="row opts-container">
+                <div class="col-6 col-md-4 life-tyre-container mb-1">
+                  <label for="right-tyre-indicator" class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="right-tyre-indicator" id="right-tyre-indicator" checked>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">Hay llanta</span>
+                  </label>
+                </div>
+
+                <div class="col-6 col-md-4 rim-tyre-container mb-2">
+                  <label>Rin</label>
+                  <label for="rtyre-rim-A" class="custom-control custom-radio">
+                    <input type="radio" name="rtyre-rim" value="A" class="custom-control-input" id="rtyre-rim-A" checked>
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">A</span>
+                  </label>
+                  <label for="rtyre-rim-B" class="custom-control custom-radio">
+                    <input type="radio" name="rtyre-rim" value="B" class="custom-control-input" id="rtyre-rim-B">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">B</span>
+                  </label>
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary btn-option col-12 col-md-4 mb-2">
+                  Vida Llanta Derecha
+                </button>
+                <div class="icon-option invisible rounded-circle">
+                  <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-light" alt="camera icon">
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="form-group col-md-6">
+                  <label for="rtyre-condition">Condición</label>
+                  <input type="text" name="rtyre-condition" placeholder="Condición" id="rtyre-condition" class="form-control">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="rtyre-brand">Marca</label>
+                  <input type="text" name="rtyre-brand" placeholder="Marca" id="rtyre-condition" class="form-control">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row fieldset-btns">
+            <input type="button" name="previous" class="btn btn-primary previous action-button" value="Anterior">
+            <input type="button" name="finish" class="btn btn-primary finish action-button" value="Finalizar">
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+    {% endblock %}
+
+    {% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha256-H3cjtrm/ztDeuhCN9I4yh4iN2Ybx/y1RM7rMmAesA0k=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      let current_fs,
+      next_fs,
+      previous_fs,
+      lengthFieldsets;
+
+      $('.btn-option').click(function(event) {
+        let radioGroup = $(this).parent().siblings('.radio-group');
+        let radioChecked = radioGroup.find('input[type=radio]:checked');
+        let option = radioGroup.find('input[type=radio]:checked').val();
+        let iconPhoto = $(this).siblings('.icon-option');
+
+        if ( option === '1' ) {
+          radioChecked.attr('checked',false);
+          radioGroup.find('input:radio[value=2]').attr('checked', 'checked');
+          $(this).addClass('active');
+          $(this).removeClass('btn-outline-secondary');
+          $(this).addClass('btn-warning');
+          iconPhoto.removeClass('invisible')
+
+        } else if ( option === '2' ) {
+          radioChecked.attr('checked',false);
+          radioGroup.find('input:radio[value=3]').attr('checked', 'checked');
+          $(this).removeClass('btn-warning');
+          $(this).addClass('btn-danger');
+
+        } else {
+          radioChecked.attr('checked',false);
+          radioGroup.find('input:radio[value=1]').attr('checked', 'checked');
+          $(this).removeClass('active');
+          $(this).removeClass('btn-danger');
+          $(this).addClass('btn-outline-secondary');
+          iconPhoto.addClass('invisible')
+        }
+      });
 
 
-  $(".next").click(function(){
-    current_fs = $(this).parents('fieldset');
-    next_fs = $(this).parents('fieldset').next();
-    $("#progress li").eq($("fieldset").index(next_fs)).addClass("active");
+      $(".next").click(function(){
+        current_fs = $(this).parents('fieldset');
+        next_fs = $(this).parents('fieldset').next();
+        $("#progress li").eq($("fieldset").index(next_fs)).addClass("active");
 
-    next_fs.show();
-    // Hide actual fieldset
-    current_fs.animate({opacity: 0}, {
-      step: function(now, mx) {
-        // 1. Scale current_fs up to 80%
-        scale = 1 - (1 - now) * 0.2;
-        // 2. Bring next_fs from the right (50%)
-        left = (now * 50)+"%";
-        // 3. Increase opacity of next_fs a 1 as it progresses
-        opacity = 1 - now;
-        current_fs.css({'transform': 'scale('+scale+')'});
-        next_fs.css({'left': left, 'opacity': opacity});
-      },
-      duration: 800,
-      complete: function(){
-        current_fs.hide();
-      },
-      //Esto viene del plugin easing
-      easing: 'easeInOutBack'
-    });
+        next_fs.show();
+        // Hide actual fieldset
+        current_fs.animate({opacity: 0}, {
+          step: function(now, mx) {
+            // 1. Scale current_fs up to 80%
+            scale = 1 - (1 - now) * 0.2;
+            // 2. Bring next_fs from the right (50%)
+            left = (now * 50)+"%";
+            // 3. Increase opacity of next_fs a 1 as it progresses
+            opacity = 1 - now;
+            current_fs.css({'transform': 'scale('+scale+')'});
+            next_fs.css({'left': left, 'opacity': opacity});
+          },
+          duration: 800,
+          complete: function(){
+            current_fs.hide();
+          },
+          //Esto viene del plugin easing
+          easing: 'easeInOutBack'
+        });
 
-  });
+      });
 
-  $(".previous").click(function(){
-    current_fs = $(this).parents('fieldset');
-    previous_fs = $(this).parents('fieldset').prev();
+      $(".previous").click(function(){
+        current_fs = $(this).parents('fieldset');
+        previous_fs = $(this).parents('fieldset').prev();
 
-    // Un-active actual progress step
-    $("#progress").find("li").eq($("fieldset").index(current_fs)).removeClass("active");
+        // Un-active actual progress step
+        $("#progress").find("li").eq($("fieldset").index(current_fs)).removeClass("active");
 
-    // Show the last fieldset
-    previous_fs.show();
-    // Hide the actual fieldset with style
-    current_fs.animate({opacity: 0}, {
-      step: function(now, mx) {
-        var scale,
+        // Show the last fieldset
+        previous_fs.show();
+        // Hide the actual fieldset with style
+        current_fs.animate({opacity: 0}, {
+          step: function(now, mx) {
+            var scale,
             left,
             opacity;
-        // As the opacity of current_fs reduces to 0 - stored in "now"
-        // 1. Scale previous_fs de 80% a 100%
-        scale = 0.8 + (1 - now) * 0.2;
-        // 2. take current_fs to the right(50%) - from 0%
-        left = ((1 - now) * 50) + "%";
-        // 3. increase opacity of previous_fs to 1 as it moves in
-        opacity = 1 - now;
-        current_fs.css({'left': left});
-        previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
-      },
-      duration: 800,
-      complete: function(){
-        current_fs.hide();
-      },
-      easing: 'easeInOutBack'
+            // As the opacity of current_fs reduces to 0 - stored in "now"
+            // 1. Scale previous_fs de 80% a 100%
+            scale = 0.8 + (1 - now) * 0.2;
+            // 2. take current_fs to the right(50%) - from 0%
+            left = ((1 - now) * 50) + "%";
+            // 3. increase opacity of previous_fs to 1 as it moves in
+            opacity = 1 - now;
+            current_fs.css({'left': left});
+            previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+          },
+          duration: 800,
+          complete: function(){
+            current_fs.hide();
+          },
+          easing: 'easeInOutBack'
+        });
+      });
+
+      /** Set number fields */
+      $('.number').each(function (count) {
+        $(this).text(count + 1);
+      });
+
+      /** Set first active class to progress items */
+      $('li.progress-item').each(function(index, el) {
+        $(this).addClass('active');
+        return false;
+      });
+
+      /** Set hidden attribute to the corresponding buttons */
+      lengthFieldsets = $('.fieldset-btns').length;
+      $('.fieldset-btns').each(function(index, el) {
+        if (index === 0) {
+          $(this).find('input.previous').attr('type', 'hidden');
+        }
+        if (index === lengthFieldsets) {
+          $(this).find('input.next').attr('type', 'hidden');
+        }
+      });
     });
-  });
 
-  /** Set number fields */
-  $('.number').each(function (count) {
-    $(this).text(count + 1);
-  });
-
-  $('li.progress-item').each(function(index, el) {
-    $(this).addClass('active');
-    return false;
-  });
-});
-
-</script>
-{% endblock %}
+    </script>
+    {% endblock %}

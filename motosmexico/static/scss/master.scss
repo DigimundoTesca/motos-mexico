@@ -129,6 +129,9 @@ header.navbar {
     border-radius: 15px;
     left: 0;
     right: 0;
+    .light {
+      font-weight: 300;
+    }
     position: absolute;
     padding: .5rem 1rem 1.5rem;
     margin: 1rem auto 2rem;
@@ -186,6 +189,25 @@ header.navbar {
     position: absolute;
     width: 100%;
     z-index: 1;
+  }
+}
+
+.life-tyre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  label {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.rim-tyre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  label:first-child {
+    padding: 0 1rem 0 .5rem;
   }
 }
 

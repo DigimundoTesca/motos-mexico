@@ -103,7 +103,13 @@ class StatusTyre(models.Model):
 
 
 class StatusGroup(models.Model):
-    alias = models.CharField(max_length=24, default='')
+    A = 'SNC'
+    B = '124'
+    OPTIONS = (
+        (A, 'Si - No- C/D'),
+        (B, '1/4 - 1/2 - 1/1'),
+    )
+    alias = models.CharField(choices=OPTIONS,max_length=3, default=A, unique=True)
 
     class Meta:
         verbose_name = 'Grupo de Condiciones'
@@ -123,6 +129,7 @@ class Status(models.Model):
 
     def __str__(self):
         return '%s' % self.status
+
 
 
 class MotorcyclePart(models.Model):
@@ -145,7 +152,7 @@ class StatusMotorcyclePart(models.Model):
 
     class Meta:
         verbose_name = 'Estado de Pieza'
-        verbose_name_plural = 'Estado de las llantas'
+        verbose_name_plural = 'Estado de Piezas'
 
     def __str__(self):
         return '%s' % self.pk
