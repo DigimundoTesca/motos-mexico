@@ -56,18 +56,6 @@ class MotorcycleRegion(models.Model):
         return '%s' % self.name
 
 
-class MotorcyclePart(models.Model):
-    name = models.CharField(max_length=72, default='')
-    motorcycle_region = models.ForeignKey(MotorcycleRegion)
-
-    class Meta:
-        verbose_name = "Parte de la Moto"
-        verbose_name_plural = "Partes de la Moto"
-
-    def __str__(self):
-        return '%s' % self.name
-
-
 class MotorcycleDamages(models.Model):
     entry_order = models.OneToOneField(
         EntryOrder,
@@ -85,9 +73,23 @@ class MotorcycleDamages(models.Model):
 
 
 class StatusTyre(models.Model):
+    QUART = 'Q'
+    MIDDLE = 'M'
+    ENTIRE = 'E'
+
+    LIFETIME_CONDITION = (
+        (QUART, '1/4'),
+        (MIDDLE, '1/2'),
+        (ENTIRE, '1/1'),
+    )
+
+    RIM_OPTION = (
+        ('A', 'A'),
+        ('R', 'R'),
+    )
     position = models.CharField(max_length=2)
-    rim = models.CharField(max_length=1)
-    lifetime = models.CharField(max_length=3)
+    rim = models.CharField(choices=RIM_OPTION, default='A', max_length=1)
+    lifetime = models.CharField(choices=LIFETIME_CONDITION, default=ENTIRE, max_length=1)
     condition = models.TextField()
     brand = models.CharField(max_length=45)
     motorcycle_damages = models.ForeignKey(MotorcycleDamages)
@@ -121,6 +123,19 @@ class Status(models.Model):
 
     def __str__(self):
         return '%s' % self.status
+
+
+class MotorcyclePart(models.Model):
+    name = models.CharField(max_length=72, default='')
+    motorcycle_region = models.ForeignKey(MotorcycleRegion)
+    status_group = models.ForeignKey(StatusGroup)
+
+    class Meta:
+        verbose_name = "Parte de la Moto"
+        verbose_name_plural = "Partes de la Moto"
+
+    def __str__(self):
+        return '%s' % self.name
 
 
 class StatusMotorcyclePart(models.Model):

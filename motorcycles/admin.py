@@ -21,7 +21,12 @@ class MotorcycleModelAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'model', ]
 
 
-admin.site.register(MotorcyclePart)
+@admin.register(MotorcyclePart)
+class MotorcyclePartAdmin(admin.ModelAdmin):
+    list_display = ('name', 'motorcycle_region', 'status_group', )
+    list_editable = ('status_group', )
+    ordering = ('motorcycle_region', 'name')
+
 admin.site.register(MotorclycleBrand)
 admin.site.register(Status)
 admin.site.register(StatusGroup)

@@ -172,7 +172,7 @@ header.navbar {
 .progress-container {
   background: $color-light;
   border-radius: 15px;
-  height: 75px;
+  height: 55px;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   position: relative;
@@ -194,7 +194,7 @@ header.navbar {
   text-align: center;
   text-transform: uppercase;
   font-size: .7rem;
-  width: 33.33%;
+  width: $total_parts;
   float: left;
   position: relative;
   &::before {
@@ -230,16 +230,13 @@ header.navbar {
       color: white;
     }
   }
+  span {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 575px) {
   header .navbar-title {
-    display: none;
-  }
-  .progress-container {
-    height: 55px;
-  }
-  #progress li span {
     display: none;
   }
 }
@@ -249,7 +246,16 @@ header.navbar {
     margin-top: 1rem;
     margin-bottom: 2rem;
     & > .col:nth-child(2n+1) {
-      // padding-right: 1rem;
     }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .progress-container {
+    height: 85px;
+  }
+
+  #progress li span {
+    display: block;
   }
 }

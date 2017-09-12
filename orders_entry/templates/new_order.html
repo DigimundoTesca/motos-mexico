@@ -8,23 +8,22 @@
     <!-- progress -->
     <div class="progress-container shadow">
       <ul id="progress">
-      <li class="active">
-        <span>Exterior</span>
-      </li>
-      <li>
-        <span>Lateral izquierdo</span>
-      </li>
-      <li>
-        <span>Lateral derecho</span>
-      </li>
-    </ul>
+        {% for region in regions %}
+        <li class="progress-item">
+          <span>{{ region }}</span>
+        </li>
+        {% endfor %}
+        <li>
+          <span>Llantas</span>
+        </li>
+      </ul>
     </div>
     {% csrf_token %}
-
+    {% for region in regions %}
     <fieldset class="form-group shadow">
       <legend>
         <span class="number"></span>
-        Exterior
+        {{ region }}
       </legend>
       <div class="row form-options">
         <div id="opt-1" class="col col-12 col-md-6">
@@ -108,161 +107,11 @@
         </div>
       </div>
       <div class="row fieldset-btns">
-        <input type="button" name="next" class="btn btn-primary next action-button" value="Siguiente">
-      </div>
-    </fieldset>
-
-    <fieldset class="form-group">
-      <legend>
-        <span class="number"></span>
-        Lateral Izquierdo
-      </legend>
-      <div class="row form-options">
-        <div id="opt-6" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio1" type="radio" name="radio6" value="yes" checked>
-            <input id="radio2" type="radio" name="radio6" value="no">
-            <input id="radio3" type="radio" name="radio6" value="cd">
-          </div>
-          <div class="icon-option rounded-circle">
-            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Direccional
-          </button>
-        </div>
-
-        <div id="opt-7" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio4" type="radio" name="radio7" value="yes" checked>
-            <input id="radio5" type="radio" name="radio7" value="no">
-            <input id="radio6" type="radio" name="radio7" value="cd">
-          </div>
-          <div class="icon-option rounded-circle">
-            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Espejo
-          </button>
-        </div>
-
-        <div id="opt-8" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio7" type="radio" name="radio8" value="yes" checked>
-            <input id="radio8" type="radio" name="radio8" value="no">
-            <input id="radio9" type="radio" name="radio8" value="cd">
-          </div>
-          <div class="icon-option rounded-circle">
-            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Tapa lateral superior
-          </button>
-        </div>
-
-        <div id="opt-9" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio10" type="radio" name="radio9" value="yes" checked>
-            <input id="radio11" type="radio" name="radio9" value="no">
-            <input id="radio12" type="radio" name="radio9" value="cd">
-          </div>
-          <div class="icon-option rounded-circle">
-            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Tapa lateral inferior (lower)
-          </button>
-        </div>
-
-        <div id="opt-10" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio13" type="radio" name="radio10" value="yes" checked>
-            <input id="radio14" type="radio" name="radio10" value="no">
-            <input id="radio15" type="radio" name="radio10" value="cd">
-          </div>
-          <div class="icon-option rounded-circle">
-            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Tapa de estator
-          </button>
-        </div>
-      </div>
-      <div class="row fieldset-btns">
         <input type="button" name="previous" class="btn btn-primary previous action-button" value="Anterior">
         <input type="button" name="next" class="btn btn-primary next action-button" value="Siguiente">
       </div>
     </fieldset>
-
-    <fieldset class="form-group">
-      <legend>
-        <span class="number"></span>
-        Lateral Derecho
-      </legend>
-      <div class="row form-options">
-        <div id="opt-6" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio1" type="radio" name="radio11" value="yes" checked>
-            <input id="radio2" type="radio" name="radio11" value="no">
-            <input id="radio3" type="radio" name="radio11" value="cd">
-          </div>
-          <div class="icon-option rounded-circle">
-            <img src="{% static 'icons/Entypo+/Entypo+/camera.svg' %}" class="svg-inject svg-camera-white" alt="camera icon">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Direccional
-          </button>
-        </div>
-
-        <div id="opt-7" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio4" type="radio" name="radio12" value="yes" checked>
-            <input id="radio5" type="radio" name="radio12" value="no">
-            <input id="radio6" type="radio" name="radio12" value="cd">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Espejo
-          </button>
-        </div>
-
-        <div id="opt-8" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio7" type="radio" name="radio13" value="yes" checked>
-            <input id="radio8" type="radio" name="radio13" value="no">
-            <input id="radio9" type="radio" name="radio13" value="cd">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Tapa lateral superior
-          </button>
-        </div>
-
-        <div id="opt-9" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio10" type="radio" name="radio14" value="yes" checked>
-            <input id="radio11" type="radio" name="radio14" value="no">
-            <input id="radio12" type="radio" name="radio14" value="cd">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Tapa lateral inferior (lower)
-          </button>
-        </div>
-
-        <div id="opt-10" class="col col-12 col-md-6">
-          <div class="radio-group" hidden>
-            <input id="radio13" type="radio" name="radio15" value="yes" checked>
-            <input id="radio14" type="radio" name="radio15" value="no">
-            <input id="radio15" type="radio" name="radio15" value="cd">
-          </div>
-          <button type="button" class="btn btn-outline-secondary btn-option btn-block">
-            Tapa de estator
-          </button>
-        </div>
-      </div>
-      <div class="row fieldset-btns">
-        <input type="button" name="previous" class="btn btn-primary previous action-button" value="Anterior">
-        <input type="submit" name="submit" class="btn btn-success" value="Enviar">
-      </div>
-    </fieldset>
+    {% endfor %}
 
   </form>
 </div>
@@ -373,6 +222,10 @@ $(document).ready(function() {
     $(this).text(count + 1);
   });
 
+  $('li.progress-item').each(function(index, el) {
+    $(this).addClass('active');
+    return false;
+  });
 });
 
 </script>
