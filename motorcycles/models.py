@@ -3,14 +3,36 @@ from django.db import models
 from orders_entry.models import EntryOrder
 
 
-class Motorcycle(models.Model):
-    brand = models.CharField(max_length=45, default='')
+class MotorclycleBrand(models.Model):
+    brand = models.CharField(max_length=48, default='', unique=True)
+
+    class Meta:
+        verbose_name = "Marca de la Moto"
+        verbose_name_plural = "Marcas de Motos"
+
+    def __str__(self):
+        return '%s' % self.brand
+
+
+class MotorcycleModel(models.Model):
+    model = models.CharField(max_length=92, default='', unique=True)
+    brand = models.ForeignKey(MotorclycleBrand)
+
+    class Meta:
+        verbose_name = "Modelo de Moto"
+        verbose_name_plural = "Modelos de Motos"
+
+    def __str__(self):
+        return '%s' % self.model
+
+
+class MotorcycleClient(models.Model):
+    model = models.ForeignKey(MotorcycleModel)
     version = models.CharField(max_length=45, default='')
     plates = models.CharField(max_length=12, default='')
     vin = models.CharField(max_length=18, default='')
     engine_number = models.CharField(max_length=18, default='')
-    model = models.CharField(max_length=4)
-    sub_brand = models.CharField(max_length=18, default='')
+    year = models.CharField(max_length=4, default='2000')
 
     class Meta:
         verbose_name = "Moto"
@@ -18,6 +40,9 @@ class Motorcycle(models.Model):
 
     def __str__(self):
         return '%s' % self.entry_order
+
+    def model(self):
+        return '%s - %s' % (self.model.brand, self.model)
 
 
 class MotorcycleRegion(models.Model):
@@ -75,23 +100,37 @@ class StatusTyre(models.Model):
         return '%s' % self.pk
 
 
+class StatusGroup(models.Model):
+    alias = models.CharField(max_length=24, default='')
+
+    class Meta:
+        verbose_name = 'Grupo de Condiciones'
+        verbose_name_plural = 'Grupos de Condiciones'
+
+    def __str__(self):
+        return '%s' % self.alias
+
+
+class Status(models.Model):
+    status = models.CharField(max_length=12)
+    group = models.ForeignKey(StatusGroup)
+
+    class Meta:
+        verbose_name = 'Condición'
+        verbose_name_plural = 'Condiciones'
+
+    def __str__(self):
+        return '%s' % self.status
+
+
 class StatusMotorcyclePart(models.Model):
-    YES = 'YS'
-    NO = 'NO'
-    WITH_DAMAGES = 'WD'
-    QUART = 'QU'
-    MIDDLE = 'MI'
-    ONE = 'ON'
-
-    OPTIONS = (
-    (YES, 'Sí'),
-    (NO, 'No'),
-    (WITH_DAMAGES, 'Con Daños'),
-    (QUART, '1/4'),
-    (MIDDLE, '1/2'),
-    (ONE, '1/1'),
-    )
-
     motorcycle_damages = models.ForeignKey(MotorcycleDamages)
     motorcycle_part = models.ForeignKey(MotorcyclePart, on_delete=models.CASCADE)
-    status = models.CharField(choices=OPTIONS, max_length=2, default=YES)
+    status = models.ForeignKey(Status)
+
+    class Meta:
+        verbose_name = 'Estado de Pieza'
+        verbose_name_plural = 'Estado de las llantas'
+
+    def __str__(self):
+        return '%s' % self.pk

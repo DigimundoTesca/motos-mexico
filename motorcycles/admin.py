@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import MotorcyclePart, MotorcycleRegion
+from .models import MotorcyclePart, MotorcycleRegion, MotorcycleModel, \
+    MotorclycleBrand, Status, StatusGroup
 
 
 class MotorcyclePartInline(admin.TabularInline):
@@ -14,4 +15,13 @@ class MotorcycleRegionAdmin(admin.ModelAdmin):
     ]
 
 
+@admin.register(MotorcycleModel)
+class MotorcycleModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'model', ]
+    list_display_links = ['id', 'model', ]
+
+
 admin.site.register(MotorcyclePart)
+admin.site.register(MotorclycleBrand)
+admin.site.register(Status)
+admin.site.register(StatusGroup)

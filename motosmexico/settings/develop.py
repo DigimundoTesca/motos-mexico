@@ -15,3 +15,6 @@ DATABASES = {
         'NAME': os.path.join(os.path.dirname(BASE_DIR), 'db_motos.sqlite3'),
     }
 }
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
