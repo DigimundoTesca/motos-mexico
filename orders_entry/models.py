@@ -1,6 +1,7 @@
 from django.db import models
 from clients.models import MotorcycleOwner
 
+
 class EntryOrder(models.Model):
     order = models.AutoField(primary_key=True)
     created_at = models.DateTimeField(auto_now=True)

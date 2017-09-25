@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+from boto.s3.connection import ProtocolIndependentOrdinaryCallingFormat
+from boto.s3.connection import S3Connection
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -34,6 +36,8 @@ DJANGO_APPS = [
 ]
 THIRD_APPS = [
     'nested_inline',
+    'storages',
+    'scheduler.apps.SchedulerConfig',
 ]
 
 USER_APPS = [
@@ -43,7 +47,6 @@ USER_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + USER_APPS
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'motosmexico.wsgi.application'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -104,15 +106,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'es-mx.UTF-8'
 
 TIME_ZONE = 'America/Mexico_City'
-
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -123,17 +122,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static/')
 ]
 
-STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, '../staticfiles')
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'staticfiles/')
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media/')
 
 LOGIN_URL = '/login/'
-
-LOGIN_REDIRECT_URL = '/'

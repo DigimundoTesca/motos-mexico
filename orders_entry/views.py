@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 
-# Create your views here.
+from motorcycles.models import MotorcycleRegion, MotorcyclePart
 
 
 def home(request):
@@ -17,5 +17,10 @@ def new_order(request):
     if request.method == 'POST':
         print(request.POST)
     template = 'new_order.html'
-    context = {}
+    motrocycle_regions = MotorcycleRegion.objects.all()
+    motorcycle_parts = MotorcyclePart.objects.all()
+    context = {
+     'regions': motrocycle_regions,
+     'parts': motorcycle_parts,
+    }
     return render(request, template, context)

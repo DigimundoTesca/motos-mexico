@@ -129,6 +129,9 @@ header.navbar {
     border-radius: 15px;
     left: 0;
     right: 0;
+    .light {
+      font-weight: 300;
+    }
     position: absolute;
     padding: .5rem 1rem 1.5rem;
     margin: 1rem auto 2rem;
@@ -172,7 +175,7 @@ header.navbar {
 .progress-container {
   background: $color-light;
   border-radius: 15px;
-  height: 75px;
+  height: 55px;
   margin-top: 1rem;
   margin-bottom: 1.5rem;
   position: relative;
@@ -189,12 +192,31 @@ header.navbar {
   }
 }
 
+.life-tyre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  label {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.rim-tyre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  label:first-child {
+    padding: 0 1rem 0 .5rem;
+  }
+}
+
 #progress li {
   list-style-type: none;
   text-align: center;
   text-transform: uppercase;
   font-size: .7rem;
-  width: 33.33%;
+  width: $total_parts;
   float: left;
   position: relative;
   &::before {
@@ -230,16 +252,13 @@ header.navbar {
       color: white;
     }
   }
+  span {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 575px) {
   header .navbar-title {
-    display: none;
-  }
-  .progress-container {
-    height: 55px;
-  }
-  #progress li span {
     display: none;
   }
 }
@@ -249,7 +268,16 @@ header.navbar {
     margin-top: 1rem;
     margin-bottom: 2rem;
     & > .col:nth-child(2n+1) {
-      // padding-right: 1rem;
     }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .progress-container {
+    height: 85px;
+  }
+
+  #progress li span {
+    display: block;
   }
 }

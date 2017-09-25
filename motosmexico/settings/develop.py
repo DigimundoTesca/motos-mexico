@@ -12,6 +12,9 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../db_motos.sqlite3'),
+        'NAME': os.path.join(os.path.dirname(BASE_DIR), 'db_motos.sqlite3'),
     }
 }
+
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
