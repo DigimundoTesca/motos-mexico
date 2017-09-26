@@ -1,7 +1,10 @@
 # import json
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.http import HttpResponse
+from django.views.generic import View
 
+from motosmexico.reportpdf import render_pdf
 from motorcycles.models import MotorcycleRegion, MotorcyclePart
 
 
@@ -24,3 +27,13 @@ def new_order(request):
      'parts': motorcycle_parts,
     }
     return render(request, template, context)
+
+
+class GeneratePDF(View):
+    """
+    Return PDF create to base to a template
+    """
+    def get(self, request, *args, **kwargs):
+        context = {}
+        pdf = render_pdf('report.html', context)
+        return HttpResponse(pdf, content_type='application/pdf')
